@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Parameters Display</title>
+</head>
+<body>
+    <h1>URL Parameters</h1>
+    <div id="output"></div>
+
+    <script>
+        // Function to parse URL parameters and display them
+        function displayURLParameters() {
+            const params = new URLSearchParams(window.location.search); // Get URL parameters
+            const outputDiv = document.getElementById('output');
+            if (params.toString() === "") {
+                outputDiv.innerHTML = "<p>No parameters found in the URL.</p>";
+                return;
+            }
+            const list = document.createElement('ul');
+            params.forEach((value, key) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${key} - ${value}`;
+                list.appendChild(listItem);
+            });
+            outputDiv.appendChild(list);
+        }
+
+        // Run the function on page load
+        window.onload = displayURLParameters;
+    </script>
+</body>
+</html>
